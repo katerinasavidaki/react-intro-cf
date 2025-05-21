@@ -5,7 +5,8 @@
 // import ArrowFunctionalComponentWithPropsType from "./components/ArrowFunctionalComponentWithPropsType.tsx";
 
 import Layout from "./components/Layout.tsx";
-import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
+// import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
+import Counter from "./components/Counter.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 
 
@@ -23,8 +24,9 @@ function App() {
             {/*    description="this is a description"/>*/}
 
             {/*<ClassComponentWithState/>*/}
-            <FunctionalComponentWithState/>
+            {/*<FunctionalComponentWithState/>*/}
 
+            <Counter/>
         </Layout>
 
     </>
