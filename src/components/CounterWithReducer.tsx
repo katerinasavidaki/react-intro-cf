@@ -1,11 +1,10 @@
 import CounterButton from "./CounterButton.tsx";
 import {useCounterWithReducer} from "../hooks/useCounterWithReducer.ts";
-// import {useCounter} from "../hooks/useCounter.ts";
+
 
 const CounterWithReducer = () => {
 
-    // custom hook function
-    // const { count, increase, decrease, reset } = useCounter();
+
     const { count, lastAction, time, increase, decrease, reset } = useCounterWithReducer();
 
     return(
