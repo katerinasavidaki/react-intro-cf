@@ -13,7 +13,7 @@ import Todo from "./components/Todo/Todo.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
 // import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
-// import NameChanger from "./components/NameChanger.tsx";
+import NameChanger from "./components/NameChanger.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 
 
@@ -34,7 +34,7 @@ function App() {
             {/*<FunctionalComponentWithState/>*/}
 
             {/*<Counter/>*/}
-            {/*<NameChanger/>*/}
+            <NameChanger/>
             {/*<CounterWithMoreStates/>*/}
             {/*<CounterAdvanced/>*/}
             {/*<CounterWithCustomHook/>*/}
