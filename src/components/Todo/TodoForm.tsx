@@ -39,6 +39,7 @@ const TodoForm = ({dispatch}: TodoFormProps) => {
                 <button
                     type="submit"
                     className="bg-cf-dark-gray text-white px-4 py-2 rounded"
+                    disabled={text.trim() === ""}
                 >
                     Add
                 </button>
