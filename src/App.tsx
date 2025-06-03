@@ -14,10 +14,17 @@ import Todo from "./components/Todo/Todo.tsx";
 // import Counter from "./components/Counter.tsx";
 // import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
 import NameChanger from "./components/NameChanger.tsx";
+import {useEffect} from "react";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 
 
 function App() {
+
+    useEffect(() => {
+        const id: number = setInterval(() => console.log("tick"), 1000)
+
+        return () => clearInterval(id);
+    }, []);
 
   return (
     <>
