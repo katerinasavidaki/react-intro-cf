@@ -14,7 +14,7 @@ import Layout from "./components/Layout.tsx";
 // import Counter from "./components/Counter.tsx";
 // import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
 import NameChanger from "./components/NameChanger.tsx";
-import {useEffect} from "react";
+// import {useEffect} from "react";
 import OnlineStatus from "./components/OnlineStatus.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 
