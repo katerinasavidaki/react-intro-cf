@@ -4,7 +4,7 @@
 // import ArrowFunctionalComponentWithProps from "./components/ArrowFunctionalComponentWithProps.tsx";
 // import ArrowFunctionalComponentWithPropsType from "./components/ArrowFunctionalComponentWithPropsType.tsx";
 
-import Layout from "./components/Layout.tsx";
+// import Layout from "./components/Layout.tsx";
 // import Todo from "./components/Todo/Todo.tsx";
 // import CounterAdvanced from "./components/CounterAdvanced.tsx";
 // import CounterWithCustomHook from "./components/CounterWithCustomHook.tsx";
@@ -13,11 +13,16 @@ import Layout from "./components/Layout.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
 // import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
-import NameChanger from "./components/NameChanger.tsx";
+// import NameChanger from "./components/NameChanger.tsx";
 // import {useEffect} from "react";
-import OnlineStatus from "./components/OnlineStatus.tsx";
+// import OnlineStatus from "./components/OnlineStatus.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 
+
+import {BrowserRouter, Route, Routes} from "react-router";
+import HomePage from "./pages/HomePage.tsx";
+import NameChangerPage from "./pages/NameChangerPage.tsx";
+import Layout from "./components/Layout.tsx";
 
 function App() {
 
@@ -29,7 +34,7 @@ function App() {
 
   return (
     <>
-        <Layout>
+        {/*<Layout>*/}
             {/*<ClassComponent />*/}
             {/*<FunctionalComponent />*/}
             {/*<ArrowFunctionalComponent />*/}
@@ -42,16 +47,25 @@ function App() {
             {/*<FunctionalComponentWithState/>*/}
 
             {/*<Counter/>*/}
-            <NameChanger/>
+            {/*<NameChanger/>*/}
             {/*<CounterWithMoreStates/>*/}
             {/*<CounterAdvanced/>*/}
             {/*<CounterWithCustomHook/>*/}
             {/*<CounterAdvancedWithCustomHook/>*/}
             {/*<CounterWithReducer/>*/}
             {/*<Todo/>*/}
-            <OnlineStatus/>
-        </Layout>
+            {/*<OnlineStatus/>*/}
+        {/*</Layout>*/}
 
+        <BrowserRouter>
+            <Layout>
+                <Routes>
+                    {/*<Route path="/" element={<HomePage/>}/>*/}
+                    <Route index element={<HomePage/>}/>
+                    <Route path="name-changer" element={<NameChangerPage/>}/>
+                </Routes>
+            </Layout>
+        </BrowserRouter>
     </>
   )
 }
