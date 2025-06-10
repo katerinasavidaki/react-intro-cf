@@ -26,7 +26,8 @@ const NameChanger = () => {
                        placeholder="Type your name"
                        value={name}
                        onChange={handleChange}
-                       className="border px-4 py-2"/>
+                       className="border px-4 py-2"
+                />
             </div>
         </>
     )

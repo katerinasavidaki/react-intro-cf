@@ -20,7 +20,7 @@
 
 
 import {BrowserRouter, Route, Routes} from "react-router";
-import HomePage from "./pages/HomePage.tsx";
+// import HomePage from "./pages/HomePage.tsx";
 import NameChangerPage from "./pages/NameChangerPage.tsx";
 // import Layout from "./components/Layout.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
@@ -30,6 +30,7 @@ import ExamplesPage from "./pages/ExamplesPage.tsx";
 import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import FocusInput from "./components/FocusInput.tsx";
 
 function App() {
 
@@ -69,7 +70,8 @@ function App() {
                 <Routes>
                     {/*<Route path="/" element={<HomePage/>}/>*/}
                     <Route element={<RouterLayout/>}>
-                        <Route index element={<HomePage/>}/>
+                        {/*<Route index element={<HomePage/>}/>*/}
+                        <Route index element={<FocusInput/>}/>
                         <Route path="users/:userId" element={<UserPage/>}/>
                         <Route path="users" element={<UserPage/>}/>
                     </Route>
