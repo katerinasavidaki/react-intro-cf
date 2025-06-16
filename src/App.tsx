@@ -35,7 +35,8 @@ import UncontrolledInput from "./components/UncontrolledInput.tsx";
 // import MultiFieldForm from "./components/MultiFieldForm.tsx";
 import ControlledInput from "./components/ControlledInput.tsx";
 // import MultiFieldFormWithValidation from "./components/MultiFieldFormWithValidation.tsx";
-import MultiFieldFormWithZodValidation from "./components/MultiFieldFormWithZodValidation.tsx";
+// import MultiFieldFormWithZodValidation from "./components/MultiFieldFormWithZodValidation.tsx";
+import MultiFieldFormWithReactHookValidation from "./components/MultiFieldFormWithReactHookValidation.tsx";
 
 function App() {
 
@@ -79,7 +80,8 @@ function App() {
                         {/*<Route index element={<FocusInput/>}/>*/}
                         {/*<Route path="multifield-form" element={<MultiFieldForm/>}/>*/}
                         {/*<Route index element={<MultiFieldFormWithValidation/>}/>*/}
-                        <Route index element={<MultiFieldFormWithZodValidation/>}/>
+                        {/*<Route index element={<MultiFieldFormWithZodValidation/>}/>*/}
+                        <Route index element={<MultiFieldFormWithReactHookValidation/>}/>
                         {/*<Route index element={<UncontrolledInput/>}/>*/}
                         <Route path="users/:userId" element={<UserPage/>}/>
                         <Route path="users" element={<UserPage/>}/>
