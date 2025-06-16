@@ -32,23 +32,28 @@ const initialValues = {
 const MultiFieldFormWithZodValidation = () => {
     const [values, setValues] = useState<FormValues>(initialValues);
     const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
-    const [errors, setErrors] = useState<FormErrors | null>(null);
+    const [errors, setErrors] = useState<FormErrors>({});
 
-    const validateForm = (values: FormValues): FormErrors => {
-        const errors: FormErrors = {};
+    const validateForm = () => {
 
-        if (!values.name.trim()) {
-            errors.name = "Name is required";
-        }
-        if (!values.email.trim() ||
-            !/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.test(values.email.trim())) {
-            errors.email = "Email is required";
-        }
-        if (values.message.length < 5) {
-            errors.message = "Message is required";
+        const result = formSchema.safeParse(values);
+        // {success: true, data: validatedData}
+        // {success: false, error: errors}
+
+        if (!result.success) {
+            const newErrors: FormErrors = {};
+
+            result.error.issues.forEach((issue) => {
+                const fieldName = issue.path[0] as keyof FormValues;
+                newErrors[fieldName] = issue.message;
+            });
+
+            setErrors(newErrors);
+            return false;
         }
 
-        return errors;
+        setErrors({});
+        return true;
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -67,24 +72,19 @@ const MultiFieldFormWithZodValidation = () => {
 
     const handleClear = () => {
         setValues(initialValues);
-        setErrors(null);
+        setErrors({});
         setSubmittedData(null);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const validationErrors = validateForm(values);
+        const isValid = validateForm();
 
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            setSubmittedData(null);
-            return;
+        if (isValid) {
+            setSubmittedData(values);
+            setValues(initialValues);
         }
-
-        setSubmittedData(values);
-        setValues(initialValues);
-        setErrors(null);
 
     };
 
@@ -99,6 +99,7 @@ const MultiFieldFormWithZodValidation = () => {
                             value={values.name}
                             name="name"
                             onChange={handleChange}
+                            autoComplete="off"
                             className="w-full px-4 py-2 rounded border"
                         />
                         {errors?.name && (
@@ -112,6 +113,7 @@ const MultiFieldFormWithZodValidation = () => {
                             type="text"
                             value={values.email}
                             name="email"
+                            autoComplete="off"
                             className="w-full px-4 py-2 rounded border"
                         />
                         {errors?.email && (
@@ -124,8 +126,8 @@ const MultiFieldFormWithZodValidation = () => {
                             placeholder="Type your message"
                             name="message"
                             value={values.message}
+                            autoComplete="off"
                             className="px-4 py-2 rounded border w-full"
-                            minLength={5}
                         >
                         </textarea>
                         {errors?.message && (
@@ -135,14 +137,14 @@ const MultiFieldFormWithZodValidation = () => {
                     <div className="flex gap-4">
                         <button
                             type="submit"
-                            className="bg-cf-dark-red text-white px-4 py-2 rounded"
+                            className="bg-cf-dark-red text-white px-4 py-2 rounded cursor-pointer"
                         >
                             Submit
                         </button>
                         <button
                             onClick={handleClear}
                             type="button"
-                            className="bg-gray-200 text-cf-gray px-4 py-2 rounded"
+                            className="bg-gray-200 text-cf-gray px-4 py-2 rounded cursor-pointer"
                         >
                             Clear
                         </button>
