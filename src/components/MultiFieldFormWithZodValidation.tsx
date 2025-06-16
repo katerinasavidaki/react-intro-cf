@@ -90,7 +90,7 @@ const MultiFieldFormWithZodValidation = () => {
 
     return(
         <>
-            <div className="flex mx-auto max-w-sm mt-8">
+            <div className="mx-auto max-w-sm mt-8">
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <input
@@ -149,17 +149,16 @@ const MultiFieldFormWithZodValidation = () => {
                             Clear
                         </button>
                     </div>
+                </form>
 
-                    {submittedData &&
+                {submittedData &&
                     <div className="mt-6 border-t pt-4 space-y-2">
                         <h2 className="font-semibold">Submitted Data</h2>
                         <p><strong>Name:</strong> {submittedData.name}</p>
                         <p><strong>Email:</strong> {submittedData.email}</p>
                         <p><strong>Message:</strong> {submittedData.message}</p>
                     </div>
-                    }
-
-                </form>
+                }
             </div>
         </>
     )
