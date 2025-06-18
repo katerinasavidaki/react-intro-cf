@@ -91,7 +91,7 @@ const ProductEdit = ({ mode }: ProductModeProps) => {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="max-w-xl mx-auto mt-12 p-8 border rounded-md space-y-6 bg-white"
+            className="max-w-xl mx-auto mt-12 p-8 border rounded-md space-y-6 bg-white shadow-2xl"
             autoComplete="off"
         >
             <h1 className="text-xl font-bold mb-4">
