@@ -1,3 +1,4 @@
+import {useState, useEffect} from "react";
 import {
     Table,
     TableBody,
@@ -7,16 +8,15 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {useEffect, useState} from "react";
-import {deleteProduct, getProducts, type ProductType} from "@/api/products.ts";
+import type {ProductType} from "@/api/products.ts";
+import {getProducts, deleteProduct} from "@/api/products.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {useNavigate} from "react-router";
 import {Pencil, Trash} from "lucide-react";
-import { toast } from "sonner";
-
+import {toast} from "sonner";
 
 const ProductList = () => {
-    const [products, setProducts] = useState<ProductType[]>([]);
+    const [products, setProducts] = useState<ProductType[]>([])
     const [loading, setLoading] = useState<boolean>(true);
     const [deleting, setDeleting] = useState<number | null>(null);
 
@@ -25,28 +25,29 @@ const ProductList = () => {
     useEffect(() => {
         getProducts()
             .then((data) => setProducts(data))
-            .finally(() => setLoading(false))
-    }, []);
+            .finally(() => setLoading(false));
+    }, [])
 
     const handleDelete = async (id: number) => {
-        if (!window.confirm("Do you want to delete this product?")) {
+        if (!window.confirm("Delete this product?")){
             setDeleting(id)
         }
         try {
             await deleteProduct(id);
-            setProducts((prev) => prev.filter((product) => product.id !== id));
-            toast.success("Product deleted successfully");
+            setProducts((prev) => prev.filter((p) => p.id !== id));
+            toast.success("Product deleted successfully.");
+            console.log("Product deleted successfully");
         } catch (error) {
-            toast.error("Error deleting product" + id);
+            toast.error("Error deleting product " + id);
+            console.log(error);
         } finally {
             setDeleting(null);
         }
+    };
 
-    }
+    if (loading) return <div className="text-center p-8">Loading...</div>;
 
-    if (loading) return <div className="text-center p-8">Loading...</div>
-
-    return(
+    return (
         <>
             <div className="p-8">
                 <Table>
@@ -67,17 +68,15 @@ const ProductList = () => {
                                 <TableCell>{product.price} €</TableCell>
                                 <TableCell className="text-right space-x-2">
                                     <Button
-                                        onClick={() => navigate(`/products/${product.id}`)}
                                         variant="outline"
-                                        className="cursor-pointer"
+                                        onClick={() => navigate(`/products/${product.id}`)}
                                     >
                                         <Pencil/>
                                     </Button>
                                     <Button
+                                        variant="destructive"
                                         onClick={() => handleDelete(product.id)}
                                         disabled={deleting === product.id}
-                                        variant="destructive"
-                                        className="cursor-pointer"
                                     >
                                         <Trash/>
                                     </Button>
@@ -90,5 +89,4 @@ const ProductList = () => {
         </>
     )
 }
-
-export default ProductList;
+export default ProductList
