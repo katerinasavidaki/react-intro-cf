@@ -1,6 +1,7 @@
 import HeaderResponsive from "./HeaderResponsive.tsx";
 import Footer from "./Footer.tsx";
 import {Outlet} from "react-router";
+import {Toaster} from "sonner";
 
 const RouterLayout = () => {
 
@@ -11,6 +12,7 @@ const RouterLayout = () => {
                     <Outlet/>
                 </div>
             <Footer/>
+            <Toaster richColors/>
         </>
     )
 }
